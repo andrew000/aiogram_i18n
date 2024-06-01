@@ -1,6 +1,11 @@
+from __future__ import annotations
+
 from contextlib import contextmanager
 from contextvars import ContextVar, Token
-from typing import Any, Generator, Generic, Literal, Optional, TypeVar, cast, overload
+from typing import TYPE_CHECKING, Any, Generator, Generic, Optional, TypeVar, cast, overload
+
+if TYPE_CHECKING:
+    from typing_extensions import Literal
 
 ContextInstance = TypeVar("ContextInstance")
 
