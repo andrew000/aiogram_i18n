@@ -41,10 +41,13 @@ class Null(TextD):
     def quote(self, value: str) -> str:
         return value
 
+    def custom_emoji(self, value: str, custom_emoji_id: str) -> str:
+        return value
+
     def blockquote(self, value: str) -> str:
         return value
 
-    def custom_emoji(self, value: str, custom_emoji_id: str) -> str:
+    def expandable_blockquote(self, value: str) -> str:
         return value
 
 
@@ -70,6 +73,8 @@ class TextDecoration:
             "SPOILER": self.spoiler,
             "QUOTE": self.quote,
             "CUSTOM_EMOJI": self.custom_emoji,
+            "BLOCKQUOTE": self.blockquote,
+            "EXPANDABLE_BLOCKQUOTE": self.expandable_blockquote,
         }
 
     @property
@@ -121,6 +126,12 @@ class TextDecoration:
         self, value: str, custom_emoji_id: str, parse_mode: Optional[str] = None
     ) -> str:
         return self.get_decoration(parse_mode=parse_mode).custom_emoji(value, custom_emoji_id)
+
+    def blockquote(self, value: str, parse_mode: Optional[str] = None) -> str:
+        return self.get_decoration(parse_mode=parse_mode).blockquote(value)
+
+    def expandable_blockquote(self, value: str, parse_mode: Optional[str] = None) -> str:
+        return self.get_decoration(parse_mode=parse_mode).expandable_blockquote(value)
 
 
 td = TextDecoration()
